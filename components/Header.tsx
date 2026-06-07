@@ -13,7 +13,13 @@ export default function Header({ active, isMenuOpen, setIsMenuOpen }: HeaderProp
   return (
     <header className="fixed inset-x-0 top-0 z-[1000] h-[58px] flex items-center justify-between px-12 border-b border-line bg-[rgba(244,244,242,0.86)] backdrop-blur-md max-tablet:px-[22px] max-mobile:px-[16px]">
       <a className="nav-link-no-underline group inline-flex items-center gap-[10px] font-mono text-base tracking-[0.02em] transition-colors duration-[240ms]" href="#home" aria-label="Portfolio home">
-        <span className="inline-block w-[22px] h-[18px] bg-ink [clip-path:polygon(0_0,100%_0,100%_35%,34%_35%,34%_64%,100%_64%,100%_100%,0_100%)] transition-colors duration-[240ms] group-hover:bg-orange" />
+        <svg
+          viewBox="0 0 100 80"
+          className="w-[22px] h-[18px] fill-ink transition-colors duration-[240ms] group-hover:fill-orange"
+          aria-hidden="true"
+        >
+          <path d="M 4,4 L 96,4 L 96,20 L 24,20 L 24,32 L 96,32 L 96,76 L 4,76 L 4,60 L 76,60 L 76,48 L 4,48 Z" />
+        </svg>
         <span className="transition-colors duration-[240ms] group-hover:text-orange">shashwat</span>
       </a>
 
