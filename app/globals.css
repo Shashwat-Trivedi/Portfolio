@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* ─── Custom design tokens ────────────────────────────────────────────────── */
+@theme {
+  --font-sans: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  --breakpoint-tablet: 1024px;
+  --breakpoint-mobile: 768px;
+
+  --color-ink: #191818;
+  --color-bg: #f4f4f2;
+  --color-muted: rgba(25, 24, 24, 0.62);
+  --color-faint: rgba(25, 24, 24, 0.08);
+  --color-line: rgba(25, 24, 24, 0.12);
+  --color-blue: #1b5def;
+  --color-blue-soft: rgba(27, 93, 239, 0.18);
+  --color-orange: #e25327;
+  --color-green: #64bd77;
+
+  --animate-ascii-reveal: asciiReveal 2.1s 0.5s ease both;
+  --animate-drift: drift 7s ease-in-out infinite alternate;
+  --animate-float-cell: floatCell 7s ease-in-out infinite alternate;
+  --animate-pulse-plus: pulsePlus 2.6s ease-in-out infinite;
+  --animate-fall: fall 8s linear infinite;
+
+  @keyframes asciiReveal {
+
+    0%,
+    24% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+
+    100% {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+  }
+
+  @keyframes drift {
+    to {
+      transform: translateY(32px);
+    }
+  }
+
+  @keyframes floatCell {
+    to {
+      transform: translateY(-22px);
+    }
+  }
+
+  @keyframes pulsePlus {
+    50% {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+}
+
+/* ─── Base resets ────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    color: #191818;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.9), transparent 35%),
+      linear-gradient(180deg, #f8f8f6 0%, #f4f4f2 100%);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+
+  /* Hide native cursor only when custom cursor is active */
+  body.custom-cursor,
+  body.custom-cursor a,
+  body.custom-cursor button {
+    cursor: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  h1 {
+    font-size: clamp(38px, 4vw, 64px);
+  }
+
+  h2 {
+    font-size: clamp(30px, 3.2vw, 52px);
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+}
+
+/* Mobile overrides — always show native cursor on mobile */
+@media (max-width: 760px) {
+
+  body.custom-cursor,
+  body.custom-cursor a,
+  body.custom-cursor button {
+    cursor: auto;
+  }
+}
+
+/* Magnetic Button Wrapper */
+.magnetic-wrap {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.magnetic-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.magnetic-wrap>a,
+.magnetic-wrap>button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Button Hover Fill Animation */
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.24s cubic-bezier(0.25, 1, 0.5, 1),
+    color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.btn-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--fill-bg, #e3e8f2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: -1;
+}
+
+.btn-fill:hover::after {
+  transform: scaleX(1);
+}
+
+/* Primary Button Custom Properties */
+.btn-primary-fill {
+  --fill-bg: #ffffff;
+}
+
+.btn-primary-fill:hover {
+  color: var(--color-blue) !important;
+  border-color: var(--color-blue) !important;
+}
+
+/* Ghost Button Custom Properties */
+.btn-ghost-fill {
+  --fill-bg: rgb(216, 221, 239);
+}
+
+.btn-ghost-fill:hover {
+  color: var(--color-ink) !important;
+  border-color: var(--color-blue) !important;
+}
+
+/* Custom Cursor Ring Hover for Nav Links */
+.is-nav-hovering-ring {
+  border-color: var(--color-blue) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  opacity: 1 !important;
+}
+
+/* Navigation Link Underline Slide-Through Animation */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: var(--underline-bottom, 8px);
+  width: 100%;
+  height: 2px;
+  background-color: #1b5def;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 440ms cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 240ms ease !important;
+}
+
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link-underline.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  background-color: #e25327;
+}
+
+.nav-link-underline.is-active:hover::after {
+  background-color: #1b5def;
+}
+
+/* ─── Reveal Animation Utilities ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Featured Work card transitions to preserve scroll reveal and add hover effects */
+.project-card {
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 280ms ease-in-out,
+    box-shadow 280ms ease-in-out;
+}
+
+/* Latest Writing card with bottom underline slide transition */
+.writing-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-blue);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms ease-in-out;
+}
+
+.writing-card:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Custom Cursor Click Effect */
+.cursor-ring-inner {
+  transition: border-color 380ms ease-out, scale 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+  scale: 1;
+}
+
+.is-clicking .cursor-ring-inner {
+  scale: 0.65;
+  transition: scale 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Service Card Icon Grid Animations */
+@keyframes service-grid-c {
+
+  0%,
+  66.6% {
+    opacity: 1;
+  }
+
+  66.7%,
+  77.7% {
+    opacity: 0;
+  }
+
+  77.8%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes service-grid-tb {
+
+  0%,
+  11.0% {
+    opacity: 0;
+  }
+
+  11.1%,
+  55.5% {
+    opacity: 1;
+  }
+
+  55.6%,
+  66.6% {
+    opacity: 0;
+  }
+
+  66.7%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes service-grid-lr {
+
+  0%,
+  22.1% {
+    opacity: 0;
+  }
+
+  22.2%,
+  55.5% {
+    opacity: 1;
+  }
+
+  55.6%,
+  66.6% {
+    opacity: 0;
+  }
+
+  66.7%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes service-grid-tlbr {
+
+  0%,
+  33.2% {
+    opacity: 0;
+  }
+
+  33.3%,
+  66.6% {
+    opacity: 1;
+  }
+
+  66.7%,
+  77.7% {
+    opacity: 0;
+  }
+
+  77.8%,
+  88.8% {
+    opacity: 1;
+  }
+
+  88.9%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes service-grid-trbl {
+
+  0%,
+  44.3% {
+    opacity: 0;
+  }
+
+  44.4%,
+  66.6% {
+    opacity: 1;
+  }
+
+  66.7%,
+  77.7% {
+    opacity: 0;
+  }
+
+  77.8%,
+  88.8% {
+    opacity: 1;
+  }
+
+  88.9%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.group:hover .service-grid-c {
+  animation: service-grid-c 1800ms forwards linear;
+}
+
+.group:hover .service-grid-tb {
+  animation: service-grid-tb 1800ms forwards linear;
+}
+
+.group:hover .service-grid-lr {
+  animation: service-grid-lr 1800ms forwards linear;
+}
+
+.group:hover .service-grid-tlbr {
+  animation: service-grid-tlbr 1800ms forwards linear;
+}
+
+.group:hover .service-grid-trbl {
+  animation: service-grid-trbl 1800ms forwards linear;
+}
