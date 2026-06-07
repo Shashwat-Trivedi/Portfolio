@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     siteName: "Shashwat Trivedi Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        type: "image/png",
+        type: "image/jpeg",
         alt: "Shashwat Trivedi | Full Stack Engineer Portfolio Logo",
       },
     ],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Shashwat Trivedi | Full Stack Engineer",
     description:
       "Full Stack Engineer building scalable products, clean APIs, and interfaces that hold up under real-world pressure.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 };
 
