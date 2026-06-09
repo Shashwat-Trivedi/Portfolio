@@ -173,7 +173,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div className="absolute left-1/2 -translate-x-1/2 bottom-[34px] text-center font-mono text-[rgba(25,24,24,0.42)] max-tablet:hidden">
-        0x01 // the problem <span className="block mt-3 text-[30px]">↓</span>
+        0x01 // the focus <span className="block mt-3 text-[30px]">↓</span>
       </div>
     </section>
   );

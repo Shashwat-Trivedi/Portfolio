@@ -57,30 +57,31 @@ export const problemCards = [
 
 export const projects = [
   {
-    title: "CleanTrack",
-    meta: "Smart Waste Management Tracking Platform",
-    year: "2025",
-    text: "A comprehensive smart waste management platform that connects citizens, sanitation workers, and administrators through a transparent ecosystem. The system enables issue reporting, GPS-verified cleaning records, real-time worker tracking, photo verification, and analytics dashboards to improve urban waste management accountability.",
-    tags: ["React", "TypeScript", "Supabase", "Mapbox", "TailwindCSS"],
-    shot: "map",
+    title: "Cloud Club",
+    meta: "AI-Powered Salesforce Talent Marketplace",
+    year: "2026",
+    text: "Contributed to a production-grade platform that uses AI to connect businesses with pre-vetted Salesforce consultants. Worked within a large-scale monorepo architecture involving Next.js, Express, TypeScript, Docker, and AI-powered matching systems while following professional development practices.",
+    tags: ["Next.js", "TypeScript", "Express", "Docker", "Turborepo"],
+    shot: "recorder",
   },
   {
     title: "Offline Drone Monitoring System",
     meta: "Security & Drone Telemetry",
-    year: "2025",
+    year: "2026",
     text: "A secure offline drone tracking solution designed for environments where internet connectivity is restricted. The system receives telemetry data from Raspberry Pi devices and visualizes drone information through an Electron-based desktop application, making it suitable for defense and high-security use cases.",
     tags: ["Electron", "Node.js", "Raspberry Pi", "JavaScript"],
     shot: "config",
     active: true,
   },
   {
-    title: "Cloud Club",
-    meta: "AI-Powered Salesforce Talent Marketplace",
+    title: "CleanTrack",
+    meta: "Smart Waste Management Tracking Platform",
     year: "2025",
-    text: "Contributed to a production-grade platform that uses AI to connect businesses with pre-vetted Salesforce consultants. Worked within a large-scale monorepo architecture involving Next.js, Express, TypeScript, Docker, and AI-powered matching systems while following professional development practices.",
-    tags: ["Next.js", "TypeScript", "Express", "Docker", "Turborepo"],
-    shot: "recorder",
-  },
+    text: "A comprehensive smart waste management platform that connects citizens, sanitation workers, and administrators through a transparent ecosystem. The system enables issue reporting, GPS-verified cleaning records, real-time worker tracking, photo verification, and analytics dashboards to improve urban waste management accountability.",
+    tags: ["React", "TypeScript", "Supabase", "Mapbox", "TailwindCSS"],
+    shot: "map",
+  }
+
 ] as const;
 
 export const services = [

@@ -3,45 +3,31 @@
 import { projects, delays, btnPrimary } from "./data/constants";
 
 function ProjectShot({ type }: { type: (typeof projects)[number]["shot"] }) {
-  if (type === "map") {
-    return (
-      <div className="relative overflow-hidden h-[230px] rounded-[4px] mt-0 mx-[20px] mb-0 max-mobile:mx-[14px] max-mobile:my-0 bg-[#101318] shadow-[inset_0_0_0_1px_rgba(25,25,25,0.08)] max-mobile:h-[180px] transform scale-100 transition-transform duration-[380ms] ease-in-out group-hover:scale-[1.035]">
-        <span className="absolute top-[10px] left-[10px] w-[5px] h-[5px] rounded-full bg-[#ff5f57]" />
-        <span className="absolute top-[10px] left-[18px] w-[5px] h-[5px] rounded-full bg-[#ffbd2e]" />
-        <span className="absolute top-[10px] left-[26px] w-[5px] h-[5px] rounded-full bg-[#28c840]" />
-        <div
-          className="absolute inset-0 opacity-35"
-          style={{ 
-            background: "linear-gradient(35deg, transparent 20%, rgba(255, 255, 255, 0.12) 21% 22%, transparent 23%), linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.1) 36% 37%, transparent 38%), repeating-linear-gradient(90deg, transparent 0 30px, rgba(255, 255, 255, 0.05) 31px 32px)"
-          }}
-        />
-        <div className="absolute font-bold left-[25%] top-[34%] w-[200px] text-white leading-[1.2] text-sm font-mono">
-          CleanTrack: Smart Waste Management
-        </div>
-        <div className="absolute inset-[50%_0_0] bg-gradient-to-t from-[rgba(244,244,242,0.28)] to-transparent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100" />
-      </div>
-    );
-  }
+  let imgPath = "";
+  let altText = "";
 
-  if (type === "config") {
-    return (
-      <div className="relative overflow-hidden h-[230px] rounded-[8px] mt-0 mx-[40px] mb-0 max-mobile:mx-[14px] max-mobile:my-0 bg-[#161616] shadow-[0_18px_32px_rgba(0,0,0,0.25)] max-mobile:h-[180px] transform scale-100 transition-transform duration-[380ms] ease-in-out group-hover:scale-[1.035]">
-        <div className="absolute left-0 top-0 bottom-0 w-[18%] bg-[#20252b]" />
-        <div className="absolute inset-[26px_24px_40px_25%] bg-[linear-gradient(rgba(25,24,24,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(25,24,24,0.08)_1px,transparent_1px)] bg-[size:100%_28px,80px_100%]" />
-        <div className="absolute inset-[50%_0_0] bg-gradient-to-t from-[rgba(244,244,242,0.28)] to-transparent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100" />
-      </div>
-    );
+  if (type === "map") {
+    imgPath = "/cleantrack.png";
+    altText = "CleanTrack";
+  } else if (type === "config") {
+    imgPath = "/trackdrone.png";
+    altText = "Offline Drone Monitoring System";
+  } else {
+    imgPath = "/cloudclub.png";
+    altText = "Cloud Club";
   }
 
   return (
-    <div className="relative overflow-hidden grid place-items-center h-[230px] rounded-[6px] mt-0 mx-[60px] mb-0 max-mobile:mx-[14px] max-mobile:my-0 bg-[#121518] max-mobile:h-[180px] transform scale-100 transition-transform duration-[380ms] ease-in-out group-hover:scale-[1.035]">
-      <div className="w-[140px] text-center text-white border border-white/10 rounded-[6px] p-[20px_15px_12px] font-mono text-sm">
-        <strong>00:00:00</strong>
-        <span className="block h-[14px] my-2 rounded-[2px] bg-[rgba(226,83,39,0.9)]" />
-        <span className="block h-[14px] my-2 rounded-[2px] bg-[rgba(226,83,39,0.9)]" />
-        <span className="block h-[14px] my-2 rounded-[2px] bg-[rgba(226,83,39,0.9)]" />
-      </div>
-      <div className="absolute inset-[50%_0_0] bg-gradient-to-t from-[rgba(244,244,242,0.28)] to-transparent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100" />
+    <div className="relative overflow-hidden h-[230px] rounded-[6px] mt-0 mx-[20px] max-mobile:mx-[14px] bg-[#121518] border border-[rgba(25,24,24,0.08)] dark:border-white/10 shadow-[0_12px_24px_rgba(0,0,0,0.12)] max-mobile:h-[180px] transform scale-100 transition-transform duration-[380ms] ease-in-out group-hover:scale-[1.035]">
+      <img
+        src={imgPath}
+        alt={altText}
+        className="w-full h-full object-cover object-top transition-transform duration-[380ms] ease-in-out group-hover:scale-[1.025]"
+      />
+      {/* Subtle dark gradient overlay to blend/darken image bottom slightly */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(16,19,24,0.4)] via-transparent to-transparent pointer-events-none" />
+      {/* Hover white fog overlay coming from bottom */}
+      <div className="absolute inset-[50%_0_0] bg-gradient-to-t from-[rgba(244,244,242,0.28)] to-transparent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100 pointer-events-none" />
     </div>
   );
 }
